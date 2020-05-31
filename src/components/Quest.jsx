@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Quest = () => {
+const Quest = ({setPresupuest,setQuestV}) => {
 	
 	const [Cant, setCant] = useState(0);
 	const [Error, setError] = useState(false);
@@ -10,7 +10,12 @@ const Quest = () => {
 
 		if(Cant <= 0 || isNaN(Cant)){
 			setError(true);
+			
 			return;
+		}else  {
+			setError(false);
+			setPresupuest(Cant);
+			setQuestV(false)
 		}
 	}
 	
