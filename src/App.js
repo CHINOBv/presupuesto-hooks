@@ -10,6 +10,16 @@ const App = () => {
   const [Gasto, setGasto] = useState({});
   const [Gastos, setGastos] = useState([]);
 
+  const {Name, Cant} = Gasto;
+
+  const addGastos = () => {
+    if(Name.trim() === "" || Cant <= 0 || isNaN(Cant)){
+      alert("Nose como lo has hecho, pero buen intento jaja");
+      return;
+    }
+    setGastos([Gasto])
+  }
+
   return (
     <>
       <div className="container App">
@@ -26,6 +36,7 @@ const App = () => {
                 <div className="one-half column">
                   <Form
                     Presupuest = {Presupuest}
+                    setGasto={setGasto}
                   />
                 </div>
                 <div className="one-half column">

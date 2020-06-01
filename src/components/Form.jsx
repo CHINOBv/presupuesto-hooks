@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import shortid from 'shortid';
 
 import { validFormCant, validFormName } from "./ValidForm.js";
 import Errorc from './Errorc.jsx';
 
 const Form = (props) => {
-  const { Presupuest } = props;
+  const { Presupuest, setGasto } = props;
 
   const [Name, setName] = useState("");
   const [Cant, setCant] = useState(0);
@@ -16,7 +17,15 @@ const Form = (props) => {
       setError(true);
       return;
     }else {
+      const Gasto = {
+        Name,Cant,
+        id: shortid.generate()
+      };
+      setGasto(Gasto);
+
       setError(false);
+      setName("");
+      setCant("")
     }
   };
 
@@ -36,6 +45,7 @@ const Form = (props) => {
           placeholder="Ej. Transporte"
           id="nm"
           onChange={(e) => setName(e.target.value)}
+          value={Name}
         />
       </div>
       <div className="campo">
@@ -45,13 +55,14 @@ const Form = (props) => {
           className="u-full-width"
           id="cant"
           onChange={(e) => setCant(parseInt(e.target.value, 10))}
+          value={Cant}
         />
       </div>
       <input
         disabled={validFormCant(Cant) || validFormName(Name)}
         type="submit"
         className="button-primary u-full-width"
-        value="Agregar Gasto"
+        value="Agregar Gasto"     
       />
     </form>
   );
