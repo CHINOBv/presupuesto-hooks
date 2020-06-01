@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import shortid from 'shortid';
+import shortid from "shortid";
 
 import { validFormCant, validFormName } from "./ValidForm.js";
-import Errorc from './Errorc.jsx';
+import Errorc from "./Errorc.jsx";
 
 const Form = (props) => {
-  const { Presupuest, setGasto } = props;
+  const { Presupuest, setGasto, setAddGasto } = props;
 
   const [Name, setName] = useState("");
   const [Cant, setCant] = useState(0);
@@ -13,29 +13,28 @@ const Form = (props) => {
 
   const addGasto = (e) => {
     e.preventDefault();
-    if(Name.trim() === "" || Cant <= 0 || isNaN(Cant)){
+    if (Name.trim() === "" || Cant <= 0 || isNaN(Cant)) {
       setError(true);
       return;
-    }else {
+    } else {
       const Gasto = {
-        Name,Cant,
-        id: shortid.generate()
+        Name,
+        Cant,
+        id: shortid.generate(),
       };
       setGasto(Gasto);
-
+      setAddGasto(true);
       setError(false);
       setName("");
-      setCant("")
+      setCant("");
     }
   };
 
   return (
-    <form
-      onSubmit={addGasto}
-    >
-      {Error ? 
-        <Errorc MSG="La Cantidad NO PUEDE ser menor a 1 y El nombre DEBE ser Obligatorio"/>
-       : null}
+    <form onSubmit={addGasto}>
+      {Error ? (
+        <Errorc MSG="La Cantidad NO PUEDE ser menor a 1 y El nombre DEBE ser Obligatorio" />
+      ) : null}
       <h2>Agrega tus Gastos</h2>
       <div className="campo">
         <label htmlFor="nm">Nombre Gasto</label>
@@ -62,7 +61,7 @@ const Form = (props) => {
         disabled={validFormCant(Cant) || validFormName(Name)}
         type="submit"
         className="button-primary u-full-width"
-        value="Agregar Gasto"     
+        value="Agregar Gasto"
       />
     </form>
   );
