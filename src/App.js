@@ -7,6 +7,8 @@ const App = () => {
 
   const [Presupuest, setPresupuest] = useState(0)
   const [QuestV, setQuestV] = useState(true)
+  const [Gasto, setGasto] = useState({});
+  const [Gastos, setGastos] = useState([]);
 
   return (
     <>
@@ -22,7 +24,9 @@ const App = () => {
             :  (
               <div className="row">
                 <div className="one-half column">
-                  <Form/>
+                  <Form
+                    Presupuest = {Presupuest}
+                  />
                 </div>
                 <div className="one-half column">
 
