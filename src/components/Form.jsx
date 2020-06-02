@@ -5,7 +5,7 @@ import { validFormCant, validFormName } from "./ValidForm.js";
 import Errorc from "./Errorc.jsx";
 
 const Form = (props) => {
-  const { Presupuest, setGasto, setAddGasto } = props;
+  const { setGasto, setAddGasto } = props;
 
   const [Name, setName] = useState("");
   const [Cant, setCant] = useState(0);
@@ -39,6 +39,7 @@ const Form = (props) => {
       <div className="campo">
         <label htmlFor="nm">Nombre Gasto</label>
         <input
+          autoFocus
           type="text"
           className="u-full-width"
           placeholder="Ej. Transporte"
